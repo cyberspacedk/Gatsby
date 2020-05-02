@@ -7,7 +7,7 @@ const Team = () => {
     <Layout>
       <h1>Our Team</h1>
       <p>
-        Some text
+        Some text about team
       </p>
     </Layout>
   )

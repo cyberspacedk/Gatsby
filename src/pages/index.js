@@ -5,17 +5,25 @@ import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
 
+const myPages = ['/about', '/archive', '/company/team', '/404']
+
 const IndexPage = () => (
   <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
+    <SEO title="Home" /> 
+    <p>Its index page.</p>
     <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
+      {/* <Image />  */}
+      <p>Pages that was create manually</p>
+      <ul>
+        {myPages.map(p=> (
+          <Link to={p} key={p}>
+            <li>{p}</li>
+          </Link>
+        ))} 
+      </ul> 
     </div>
-    <Link to="/page-2/">Go to page 2</Link>
   </Layout>
 )
 
 export default IndexPage
+ 

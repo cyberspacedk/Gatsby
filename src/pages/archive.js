@@ -1,13 +1,12 @@
 import React from 'react' 
 import Layout from '../components/layout'
 
+import Archive from '../components/archieves';
+
 const About = () => {
   return (
     <Layout>
-      <h1>About Us</h1>
-      <p>
-        Some text about us
-      </p>
+      <Archive />
     </Layout>
   )
 }
