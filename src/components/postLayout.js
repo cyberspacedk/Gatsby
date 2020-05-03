@@ -8,19 +8,25 @@ import {graphql, useStaticQuery} from 'gatsby';
 // Page Query
 // Must be used on pages
 
-const PostLayout = () => {
+const PostLayout = ({data}) => {
+
   return (
     <Layout>
-      <h1>Тут тестируем запросы</h1>
+      <p>Тут тестируем динамически сгенерированный контент</p>
+      <h2>Article title - {data.markdownRemark.frontmatter.title}</h2>
+      <div dangerouslySetInnerHTML={{
+        __html: data.markdownRemark.html
+      }}/>
     </Layout>
   )
 }
 
+// переменная slug подтянется из контекста который мы описали при создании страницы в gatsby-node.js
 export const query = graphql`
-  query postQuery{ 
+  query postQuery($slug: String!){  
     markdownRemark(frontmatter:{
       slug: {
-        eq: "/third-post"
+        eq: $slug
       }
     }) {
       html

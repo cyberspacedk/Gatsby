@@ -23,10 +23,10 @@ exports.createPages = ({ graphql, actions }) => {
         createPage({
           path: node.frontmatter.slug,
           component: path.resolve('./src/components/postLayout.js'),
+          // в контекст передаем то , что затем можем использовать как аргументы запроса
           context: {
             slug: node.frontmatter.slug
-          }
-
+          } 
         })
       })
       resolve();

@@ -1,7 +1,7 @@
 ---
 slug: "/third-post"
 date: "2018-10-15"
-title: "Our second post"
+title: "Our third post"
 ---
 
 ## Streets of rage
