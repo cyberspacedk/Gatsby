@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "package.json",
-  "author": "Wes Bos <wesbos@gmail.com>",
+  "author": "Cyberspace <frontend.dk@gmail.com>",
   "license": "UNLICENSED",
   "scripts": {
     "lint": "eslint .",
