@@ -1,5 +1,5 @@
 import React from 'react';
 
-export default function SliceMastersPage() {
-  return <div>SliceMasters Page</div>;
-}
+const SliceMastersPage = () => <p>SliceMasters Page</p>;
+
+export default SliceMastersPage;
