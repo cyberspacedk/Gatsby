@@ -3,8 +3,10 @@ import React from 'react';
 import Footer from './Footer';
 import Nav from './Nav';
 
-import GlobalStyles from '../styles/GlobalStyles';
+// Styles
 import 'normalize.css';
+import GlobalStyles from '../styles/GlobalStyles';
+import TypographyStyles from '../styles/Typography';
 
 const Layout = ({ children }) => (
   <div>
@@ -12,6 +14,7 @@ const Layout = ({ children }) => (
     {children}
     <Footer />
     <GlobalStyles />
+    <TypographyStyles />
   </div>
 );
 
