@@ -1,40 +1,66 @@
-import { MdLocalPizza } from 'react-icons/md';
-
-function fieldCreator(name, type, title, description, opt, val) {
-  return {
-    name,
-    type,
-    title,
-    description,
-    options: opt || {},
-    ...(val && { validation: val }),
-  };
-}
+// import PriceInput from '../components/PriceInput';
 
 export default {
   // Computer name
   name: 'pizza',
+  type: 'document',
   //   visible Title
   title: 'Pizzas',
-  type: 'document',
-  icon: MdLocalPizza, // icon for field
+  icon: () => '🍕', // icon for field
+
   fields: [
-    fieldCreator('name', 'string', 'Pizza name', 'Name of the pizza'),
-    fieldCreator('slug', 'slug', 'Slug', '', {
-      source: 'name',
-      maxLength: 100,
-    }),
-    fieldCreator('image', 'image', 'Image', '', {
-      hotspot: true,
-    }),
-    fieldCreator(
-      'price',
-      'number',
-      'Price',
-      'Price of the pizza in cents',
-      false,
-      (rule) => rule.min(1000).max(50000)
+    {
+      name: 'name',
+      type: 'string',
+      title: 'Pizza name',
+      description: 'Name of the pizza',
+    },
+    {
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug',
+      options: {
+        source: 'name',
+        maxLength: 100,
+      },
+    },
+    {
+      name: 'image',
+      type: 'image',
+      title: 'Image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
+      name: 'price',
+      type: 'number',
+      title: 'Price',
+      description: 'Price of the pizza in cents',
+      // Custom React component
+      // inputComponent: PriceInput,
+
+      validation: (Rule) => Rule.min(1000).max(50000),
       // TODO: Add custom input component
-    ),
+    },
+    {
+      name: 'choose',
+      type: 'array',
+      title: 'Toppings',
+      of: [
+        {
+          type: 'reference',
+          to: { type: 'toppings' },
+        },
+      ],
+    },
   ],
+
+  preview: {
+    select: {
+      title: 'name',
+      media: 'image',
+    },
+    prepare: (field) => ({ title: field.title, media: field.media }),
+  },
 };
