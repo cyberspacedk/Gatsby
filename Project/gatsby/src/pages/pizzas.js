@@ -4,7 +4,6 @@ import { graphql } from 'gatsby';
 import PizzaList from '../components/PizzaList';
 
 const PizzasPage = ({ data }) => {
-  console.log(data);
   const pizzas = data.pizzas.nodes;
 
   return (
@@ -25,6 +24,16 @@ export const query = graphql`
         id
         slug {
           current
+        }
+        image {
+          asset {
+            fixed(width: 200, height: 200) {
+              ...GatsbySanityImageFixed
+            }
+            fluid(maxWidth: 400) {
+              ...GatsbySanityImageFluid
+            }
+          }
         }
         choose {
           id
