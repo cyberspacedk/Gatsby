@@ -1,37 +1,35 @@
-export default {
-  name: 'toppings', // schema Name
-  type: 'document',
-  title: 'Toppings', // Tile for records
-  icon: () => '🥗',
+import { FaPepperHot as icon } from 'react-icons/fa';
 
+export default {
+  // Computer Name
+  name: 'topping',
+  // visible title
+  title: 'Toppings',
+  type: 'document',
+  icon,
   fields: [
     {
-      name: 'topping',
+      name: 'name',
+      title: 'Topping Name',
       type: 'string',
-      title: 'Topping',
+      description: 'What is the name of the topping?',
     },
     {
       name: 'vegetarian',
+      title: 'Vegetarian',
       type: 'boolean',
-      title: 'Is vegetarian',
       options: {
         layout: 'checkbox',
       },
     },
   ],
-
-  //   Preview for record in list
   preview: {
     select: {
-      title: 'topping', // here we have to point to NAME property of the field
+      name: 'name',
       vegetarian: 'vegetarian',
     },
-    // Map through all fields
-    prepare: (field) =>
-      ![field.title, field.vegetarian].includes(undefined)
-        ? {
-            title: `${field.title} ${field.vegetarian ? '🥦' : '🍖'}`,
-          }
-        : {},
+    prepare: ({ name, vegetarian }) => ({
+      title: `${name} ${vegetarian ? '🌱' : ''}`,
+    }),
   },
 };

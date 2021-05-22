@@ -2,26 +2,31 @@ import React from 'react';
 import PatchEvent, { set, unset } from 'part:@sanity/form-builder/patch-event';
 
 function createPatchFrom(value) {
-  return PatchEvent.from(value === '' ? unset() : set(+value));
+  return PatchEvent.from(value === '' ? unset() : set(Number(value)));
 }
 
-const PriceInput = (props) => {
-  const { value, onChange, type } = props;
+const formatMoney = Intl.NumberFormat('en-CA', {
+  style: 'currency',
+  currency: 'CAD',
+}).format;
 
+export default function PriceInput({ type, value, onChange, inputComponent }) {
   return (
-    <>
+    <div>
       <h2>
-        {type.title} - {value}
+        {type.title} - {value ? formatMoney(value / 100) : ''}
       </h2>
       <p>{type.description}</p>
       <input
-        type={type.type}
+        type={type.name}
         value={value}
-        onChange={onChange}
-        // ref={type.inputComponent}
+        onChange={(event) => onChange(createPatchFrom(event.target.value))}
+        ref={inputComponent}
       />
-    </>
+    </div>
   );
-};
+}
 
-export default PriceInput;
+PriceInput.focus = function () {
+  this._inputElement.focus();
+};

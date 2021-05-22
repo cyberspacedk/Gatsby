@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
+import ToppingsFilter from '../components/ToppingsFilter';
 import PizzaList from '../components/PizzaList';
 
 const PizzasPage = ({ data }) => {
@@ -8,7 +9,7 @@ const PizzasPage = ({ data }) => {
 
   return (
     <>
-      <p>Hey! There are {pizzas.length} Pizzas !!</p>
+      <ToppingsFilter />
       <PizzaList pizzas={pizzas} />
     </>
   );
@@ -17,28 +18,29 @@ const PizzasPage = ({ data }) => {
 export default PizzasPage;
 
 export const query = graphql`
-  query Pizza {
-    pizzas: allSanityPizza {
+  query PizzaQuery($toppingRegex: String) {
+    pizzas: allSanityPizza(
+      filter: { toppings: { elemMatch: { name: { regex: $toppingRegex } } } }
+    ) {
       nodes {
         name
         id
         slug {
           current
         }
+        toppings {
+          id
+          name
+        }
         image {
           asset {
-            fixed(width: 200, height: 200) {
+            fixed(width: 600, height: 200) {
               ...GatsbySanityImageFixed
             }
             fluid(maxWidth: 400) {
               ...GatsbySanityImageFluid
             }
           }
-        }
-        choose {
-          id
-          topping
-          vegetarian
         }
       }
     }

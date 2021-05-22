@@ -1,14 +1,14 @@
-// Schema creator
+// First, we must import the schema creator
 import createSchema from 'part:@sanity/base/schema-creator';
-// Schema types from any plugins that might expose them
+// Then import schema types from any plugins that might expose them
 import schemaTypes from 'all:part:@sanity/base/schema-type';
+// Then we give our schema to the builder and provide the result to Sanity
 
 // Schema we create
 import pizzaSchema from './pizzaSchema';
 import toppingsSchema from './toppingSchema';
 import personSchema from './personSchema';
 
-// Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
   name: 'default',

@@ -1,34 +1,37 @@
-export default {
-  name: 'person',
-  type: 'document',
-  title: 'Slicemasters',
-  icon: () => '🐨',
+import { MdPerson as icon } from 'react-icons/md';
 
+export default {
+  // Computer Name
+  name: 'person',
+  // visible title
+  title: 'Slicemasters',
+  type: 'document',
+  icon,
   fields: [
     {
       name: 'name',
-      type: 'string',
       title: 'Name',
-    },
-    {
-      name: 'bio',
-      type: 'text',
-      title: 'Who are you',
-      description: 'Tell about yourself',
+      type: 'string',
     },
     {
       name: 'slug',
-      type: 'slug',
       title: 'Slug',
+      type: 'slug',
       options: {
         source: 'name',
         maxLength: 100,
       },
     },
     {
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      description: 'Tell us a bit about this person',
+    },
+    {
       name: 'image',
+      title: 'Image',
       type: 'image',
-      title: 'Person photo',
       options: {
         hotspot: true,
       },
