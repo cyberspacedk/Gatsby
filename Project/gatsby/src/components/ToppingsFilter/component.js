@@ -5,15 +5,8 @@ import { countPizzasInToppings } from './utils';
 import { ToppingStyled } from './styled';
 
 const ToppingsFilter = () => {
-  const { toppings, pizzas } = useStaticQuery(graphql`
+  const { pizzas } = useStaticQuery(graphql`
     query Toppings {
-      toppings: allSanityTopping {
-        nodes {
-          name
-          vegetarian
-          id
-        }
-      }
       pizzas: allSanityPizza {
         nodes {
           toppings {
