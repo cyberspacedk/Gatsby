@@ -9,7 +9,7 @@ const SliceMasters = ({ persons }) => (
     <SliceMasterStyled>
       {persons.map((person) => (
         <div>
-          <Link to={`slicemasters/${person.slug.current}`}>
+          <Link to={`/slicemasters/${person.slug.current}`}>
             <h2>
               <span className="mark">{person.name}</span>
             </h2>

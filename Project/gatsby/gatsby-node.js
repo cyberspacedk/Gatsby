@@ -2,6 +2,11 @@
 const { pizzaPageBuilder } = require('./src/nodeHelpers/pizzaPageBuilder');
 const { toppingPageBuilder } = require('./src/nodeHelpers/toppingPageBuilder');
 
+// pagination
+const {
+  turnSliceMastersIntoPages,
+} = require('./src/nodeHelpers/turnSlicemastersIntoPages');
+
 // graphql layer - external source retriever
 const {
   fetchBeersAndCreateNodes,
@@ -14,6 +19,7 @@ exports.createPages = async ({ graphql, actions }) => {
   await Promise.all([
     pizzaPageBuilder(graphql, actions),
     toppingPageBuilder(graphql, actions),
+    turnSliceMastersIntoPages(graphql, actions),
   ]);
 };
 

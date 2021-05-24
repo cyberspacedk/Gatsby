@@ -3,7 +3,7 @@ import stripes from '../../assets/images/stripes.svg';
 
 export const ContentStyles = styled.div`
   background-color: #fff;
-  padding: 2ren;
+  padding: 2rem;
 `;
 
 export const SiteBorderStyled = styled.div`
