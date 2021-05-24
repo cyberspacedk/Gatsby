@@ -22,8 +22,12 @@ const ToppingsFilter = () => {
 
   return (
     <div>
-      <p>Toppings</p>
       <ToppingStyled>
+        <Link to="/pizzas">
+          <span className="name">All</span>
+          <span className="count">{countPizzas.length}</span>
+        </Link>
+
         {countPizzas.map((topping) => (
           <Link key={topping.id} to={`/topping/${topping.name}`}>
             <span className="name">{topping.name}</span>
@@ -34,4 +38,5 @@ const ToppingsFilter = () => {
     </div>
   );
 };
+
 export default ToppingsFilter;

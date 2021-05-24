@@ -1,36 +1,23 @@
-const path = require('path');
+// page builders
+const { pizzaPageBuilder } = require('./src/nodeHelpers/pizzaPageBuilder');
+const { toppingPageBuilder } = require('./src/nodeHelpers/toppingPageBuilder');
 
-const pizzaPageBuilder = async (graphql, actions) => {
-  // get page template reference
-  const pizzaPageTemplate = path.resolve('./src/templates/Pizza.js');
+// graphql layer - external source retriever
+const {
+  fetchBeersAndCreateNodes,
+} = require('./src/nodeHelpers/fetchBeersAndCreateNodes');
 
-  //   make query for getting data
-  const { data } = await graphql(`
-    query AllPizzas {
-      pizzas: allSanityPizza {
-        nodes {
-          name
-          slug {
-            current
-          }
-        }
-      }
-    }
-  `);
+// HOOKS
 
-  // map through nodes and create pages
-  data.pizzas.nodes.forEach((pizza) => {
-    actions.createPage({
-      path: `pizza/${pizza.slug.current}`, // url for new page
-      component: pizzaPageTemplate, // template to render
-      // data to passed to Component as props "pageContext"
-      context: {
-        slug: pizza.slug.current, // will be available as variable $slug for query param
-      },
-    });
-  });
+// page creator hook
+exports.createPages = async ({ graphql, actions }) => {
+  await Promise.all([
+    pizzaPageBuilder(graphql, actions),
+    toppingPageBuilder(graphql, actions),
+  ]);
 };
 
-exports.createPages = async ({ graphql, actions }) => {
-  await pizzaPageBuilder(graphql, actions);
+// graphql layer - source node builder
+exports.sourceNodes = async (params) => {
+  await Promise.all([fetchBeersAndCreateNodes(params)]);
 };

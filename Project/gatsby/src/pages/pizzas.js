@@ -18,9 +18,9 @@ const PizzasPage = ({ data }) => {
 export default PizzasPage;
 
 export const query = graphql`
-  query PizzaQuery($toppingRegex: String) {
+  query PizzaQuery($name: [String]) {
     pizzas: allSanityPizza(
-      filter: { toppings: { elemMatch: { name: { regex: $toppingRegex } } } }
+      filter: { toppings: { elemMatch: { name: { in: $name } } } }
     ) {
       nodes {
         name
