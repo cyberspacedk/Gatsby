@@ -4,8 +4,8 @@ const { toppingPageBuilder } = require('./src/nodeHelpers/toppingPageBuilder');
 
 // pagination
 const {
-  turnSliceMastersIntoPages,
-} = require('./src/nodeHelpers/turnSlicemastersIntoPages');
+  sliceMastersPageBuilder,
+} = require('./src/nodeHelpers/sliceMastersPageBuilder');
 
 // graphql layer - external source retriever
 const {
@@ -19,7 +19,7 @@ exports.createPages = async ({ graphql, actions }) => {
   await Promise.all([
     pizzaPageBuilder(graphql, actions),
     toppingPageBuilder(graphql, actions),
-    turnSliceMastersIntoPages(graphql, actions),
+    sliceMastersPageBuilder(graphql, actions),
   ]);
 };
 

@@ -1,6 +1,6 @@
 const path = require('path');
 
-exports.turnSliceMastersIntoPages = async (graphql, actions) => {
+exports.sliceMastersPageBuilder = async (graphql, actions) => {
   // need query all slice masters to find out count of persons
   const { data } = await graphql(`
     query AllPersons {
@@ -17,6 +17,20 @@ exports.turnSliceMastersIntoPages = async (graphql, actions) => {
       }
     }
   `);
+
+  // Create single sliceMaster Page
+  data.persons.nodes.forEach((person) => {
+    actions.createPage({
+      path: `/slicemasters/${person.slug.current}`,
+      component: path.resolve(
+        __dirname,
+        '../templates/SliceMaster/SliceMaster.js'
+      ),
+      context: {
+        slug: person.slug.current,
+      },
+    });
+  });
 
   // calculate count of pages
   // grab count of pages from settings
