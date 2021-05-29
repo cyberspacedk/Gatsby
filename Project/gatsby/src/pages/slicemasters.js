@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
+import SEO from '../components/SEO';
 import SliceMasters from '../components/SliceMasters';
 import Pagination from '../components/Pagination';
 
@@ -8,6 +9,8 @@ const SliceMastersPage = ({ data, pageContext }) => {
   const { currentPage, skip } = pageContext;
   return (
     <>
+      <SEO title={`Slicemasters - Page ${currentPage || 1}`} />
+
       <Pagination
         totalCount={data.persons.totalCount}
         pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
