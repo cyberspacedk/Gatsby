@@ -9,6 +9,7 @@ import PizzaOrder from '../components/PizzaOrder';
 
 import { useForm } from '../utils/useForm';
 import { usePizza } from '../utils/usePizza';
+import { calculateOrderTotal } from '../utils/calculateOrderTotal';
 
 import { OrderStyled } from '../styles/OrderStyles';
 
@@ -58,6 +59,11 @@ const OrderPage = () => {
             removeFromOrder={removeFromOrder}
             pizzas={pizzas.nodes}
           />
+        </fieldset>
+
+        <fieldset>
+          <h3>Total is - {calculateOrderTotal(order, pizzas.nodes)}</h3>
+          <button type="submit">Order Ahead!</button>
         </fieldset>
       </OrderStyled>
     </>
