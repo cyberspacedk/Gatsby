@@ -16,7 +16,7 @@ const PizzaOrder = ({ order, pizzas, removeFromOrder }) => {
           (pizza) => pizza.id === singleOrder.id
         );
         return (
-          <MenuItemStyles key={singleOrder.id}>
+          <MenuItemStyles key={`${singleOrder.id}-${idx}`}>
             <Img fluid={currentPizza.image.asset.fluid} />
             <h2>{currentPizza.name}</h2>
             <p>

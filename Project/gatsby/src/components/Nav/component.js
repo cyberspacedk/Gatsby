@@ -9,7 +9,7 @@ const Nav = () => (
   <NavStyled>
     <ul>
       {navData.map(({ src, label }) => (
-        <li>
+        <li key={label}>
           <Link to={src}>{label === 'LOGO' ? <Logo /> : label}</Link>
         </li>
       ))}
