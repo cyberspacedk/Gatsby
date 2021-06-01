@@ -20,13 +20,26 @@ const OrderPage = () => {
     name: '',
     email: '',
   });
-  const { order, addToOrder, removeFromOrder } = usePizza({});
+
+  const {
+    order,
+    addToOrder,
+    removeFromOrder,
+    error,
+    loading,
+    message,
+    submitOrder,
+  } = usePizza({ pizzas: pizzas.nodes, values });
+
+  if (message) {
+    return <p>{message}</p>;
+  }
 
   return (
     <>
       <SEO title="Order Pizza" />
 
-      <OrderStyled>
+      <OrderStyled onSubmit={submitOrder}>
         <fieldset>
           <legend>Your Info</legend>
           <label htmlFor="name">Name</label>
@@ -63,7 +76,10 @@ const OrderPage = () => {
 
         <fieldset>
           <h3>Total is - {calculateOrderTotal(order, pizzas.nodes)}</h3>
-          <button type="submit">Order Ahead!</button>
+          <div>{error && <p>{error}</p>}</div>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Placing order ...' : 'Order Ahead!'}
+          </button>
         </fieldset>
       </OrderStyled>
     </>
