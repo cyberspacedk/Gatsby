@@ -1,25 +1,25 @@
 import React from 'react';
 
-import { ItemsGrid, ItemLoading } from '../../styles/Grid';
+import { ItemsGridStyled, ItemStyled } from '../../styles/Grid';
 import {} from './styled';
 
 const LoadingGrid = ({ count }) => (
-  <ItemsGrid>
+  <ItemsGridStyled>
     {Array.from({ length: count }, (_, i) => (
-      <ItemLoading>
+      <ItemStyled>
         <p>
           <span className="mark">Loading...</span>
         </p>
         <img
-          src="data:base64,iVBORw0KGgoAAAANSUhEU"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
           className="loading"
           alt="Loading"
           width="500"
           height="400"
         />
-      </ItemLoading>
+      </ItemStyled>
     ))}
-  </ItemsGrid>
+  </ItemsGridStyled>
 );
 
 export default LoadingGrid;

@@ -1,24 +1,31 @@
 import styled from 'styled-components';
 
-export const HomePageGrid = styled.div`
+export const HomeWrapperStyled = styled.div`
+  h1,
+  p {
+    text-align: center;
+  }
+`;
+
+export const HomePageGridStyled = styled.div`
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(2, minmax(auto, 1fr));
 `;
 
-export const ItemsGrid = styled.div`
+export const ItemsGridStyled = styled.div`
   display: grid;
   gap: 2rem;
   grid-template-columns: 1fr 1fr;
 `;
 
-export const ItemLoading = styled.div`
+export const ItemStyled = styled.div`
   text-align: center;
   position: relative;
 
   p {
     display: block;
-    transform: rotate(-2deg) translateY(-50%);
+    transform: rotate(-2deg) translateY(-140%);
     position: absolute;
     left: 0;
     width: 100%;
