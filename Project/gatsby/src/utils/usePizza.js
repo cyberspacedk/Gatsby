@@ -37,6 +37,7 @@ export const usePizza = ({ pizzas, values }) => {
         total: calculateOrderTotal(order, pizzas),
         name: values.name,
         email: values.email,
+        emailX: values.emailX,
       };
 
       // Serverless function uri
@@ -50,7 +51,11 @@ export const usePizza = ({ pizzas, values }) => {
         body: JSON.stringify(body),
       });
 
-      const responseText = await response.text();
+      const responseText = JSON.parse(await response.text());
+      console.log(
+        '🚀 ~ file: usePizza.js ~ line 58 ~ submitOrder ~ responseText',
+        responseText
+      );
 
       if (response.status >= 400 && response.status < 600) {
         setLoading(false);

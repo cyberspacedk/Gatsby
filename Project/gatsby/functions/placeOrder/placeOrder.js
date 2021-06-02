@@ -33,7 +33,17 @@ const transporter = nodemailer.createTransport({
 
 exports.handler = async (event, ctx) => {
   const requestBody = JSON.parse(event.body);
-  const requiredFields = ['email', 'name', 'order'];
+  const requiredFields = ['name', 'email', 'order'];
+
+  // check Honey pot
+  if (requestBody.emailX) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({
+        message: `Boop beep zzzzz good bye ERR $%&*&#@`,
+      }),
+    };
+  }
 
   // check required fields
   for (const field of requiredFields) {
@@ -41,10 +51,20 @@ exports.handler = async (event, ctx) => {
       return {
         statusCode: 400,
         body: JSON.stringify({
-          message: `Oops! You are missing the ${field} field`,
+          message: `Oops! You are missing the " ${field} " field`,
         }),
       };
     }
+  }
+
+  // check order items
+  if (!requestBody.order.length) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({
+        message: `Why you order nothing?!`,
+      }),
+    };
   }
 
   const { name, email, order, total } = requestBody;

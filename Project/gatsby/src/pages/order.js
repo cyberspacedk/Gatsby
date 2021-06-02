@@ -19,6 +19,7 @@ const OrderPage = () => {
   const [values, updateValue] = useForm({
     name: '',
     email: '',
+    emailX: '',
   });
 
   const {
@@ -40,7 +41,7 @@ const OrderPage = () => {
       <SEO title="Order Pizza" />
 
       <OrderStyled onSubmit={submitOrder}>
-        <fieldset>
+        <fieldset disabled={loading}>
           <legend>Your Info</legend>
           <label htmlFor="name">Name</label>
           <input
@@ -58,14 +59,22 @@ const OrderPage = () => {
             value={values.email}
             onChange={updateValue}
           />
+          {/* Hpot */}
+          <input
+            type="email"
+            name="emailX"
+            className="email-x"
+            value={values.emailX}
+            onChange={updateValue}
+          />
         </fieldset>
 
-        <fieldset className="menu">
+        <fieldset className="menu" disabled={loading}>
           <legend>Menu</legend>
           <PizzaMenu pizzas={pizzas.nodes} addToOrder={addToOrder} />
         </fieldset>
 
-        <fieldset className="order">
+        <fieldset className="order" disabled={loading}>
           <legend>Order</legend>
           <PizzaOrder
             order={order}
@@ -74,9 +83,11 @@ const OrderPage = () => {
           />
         </fieldset>
 
-        <fieldset>
+        <fieldset disabled={loading}>
           <h3>Total is - {calculateOrderTotal(order, pizzas.nodes)}</h3>
-          <div>{error && <p>{error}</p>}</div>
+          <div style={{ color: 'red', textAlign: 'center' }}>
+            {error && <p>{error}</p>}
+          </div>
           <button type="submit" disabled={loading}>
             {loading ? 'Placing order ...' : 'Order Ahead!'}
           </button>

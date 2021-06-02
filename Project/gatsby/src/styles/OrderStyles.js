@@ -17,6 +17,10 @@ export const OrderStyled = styled.form`
       grid-column: span 1;
     }
   }
+  .email-x {
+    display: none;
+  }
+
   @media (max-width: 900px) {
     fieldset.menu,
     fieldset.order {
