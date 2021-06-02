@@ -8,11 +8,17 @@ import schemaTypes from 'all:part:@sanity/base/schema-type';
 import pizzaSchema from './pizzaSchema';
 import toppingsSchema from './toppingSchema';
 import personSchema from './personSchema';
+import storeSettings from './storeSettings';
 
 export default createSchema({
   // We name our schema
   name: 'default',
   // Then proceed to concatenate our document type
   // to the ones provided by any plugins that are installed
-  types: schemaTypes.concat([pizzaSchema, toppingsSchema, personSchema]),
+  types: schemaTypes.concat([
+    pizzaSchema,
+    toppingsSchema,
+    personSchema,
+    storeSettings,
+  ]),
 });
