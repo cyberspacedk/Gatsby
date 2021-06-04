@@ -5,7 +5,6 @@ import Img from 'gatsby-image';
 import SEO from '../../components/SEO';
 
 const SliceMaster = ({ data }) => {
-  console.log('🚀 ~ file: SliceMaster.js ~ line 8 ~ SliceMaster ~ data', data);
   const { name, image, description } = data.person;
   return (
     <>

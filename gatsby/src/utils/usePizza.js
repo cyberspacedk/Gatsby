@@ -52,10 +52,6 @@ export const usePizza = ({ pizzas, values }) => {
       });
 
       const responseText = JSON.parse(await response.text());
-      console.log(
-        '🚀 ~ file: usePizza.js ~ line 58 ~ submitOrder ~ responseText',
-        responseText
-      );
 
       if (response.status >= 400 && response.status < 600) {
         setLoading(false);
