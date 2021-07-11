@@ -83,12 +83,14 @@ function SearchPage({
   const queryParams = getValuesFromQueryString(location.search)
   const [filters, setFilters] = React.useState(queryParams)
   const [sortKey, setSortKey] = React.useState(queryParams.sortKey)
+
   // We clear the hash when searching, we want to make sure the next page will be fetched due the #more hash.
   const shouldLoadNextPage = React.useRef(false)
 
   // This modal is only used on mobile
   const [showModal, setShowModal] = React.useState(false)
 
+  // GET FILTERED PRODUCTS BY QUERYING useProductSearch AND PASS CURRENT FILTERS
   const {
     data,
     isFetching,
@@ -159,7 +161,10 @@ function SearchPage({
     <Layout>
       <h1 className={visuallyHidden}>Search Results</h1>
       <div className={main}>
+
+        {/* SEARCH AND SORT SECTION */}
         <div className={search} aria-hidden={modalOpen}>
+          {/* SEARCH INPUT */}
           <SearchBar defaultTerm={filters.term} setFilters={setFilters} />
           <button
             className={[
@@ -173,6 +178,8 @@ function SearchPage({
           >
             <FilterIcon />
           </button>
+
+          {/* SORTING */}
           <div className={sortSelector}>
             <label>
               <span>Sort by:</span>
@@ -191,6 +198,8 @@ function SearchPage({
             <SortIcon className={sortIcon} />
           </div>
         </div>
+
+        {/* FILTERS SECTION */}
         <section className={[filterStyle, showModal && modalOpen].join(" ")}>
           <div className={filterTitle}>
             <h2>Filter</h2>
@@ -209,6 +218,7 @@ function SearchPage({
             />
           </div>
         </section>
+
         <section
           className={results}
           aria-busy={isFetching}
@@ -229,6 +239,8 @@ function SearchPage({
               )}
             </p>
           )}
+
+          {/* PRODUCT LIST */}
           <ul className={productListStyle}>
             {!isFetching &&
               productList.map(({ node }, index) => (
@@ -250,6 +262,8 @@ function SearchPage({
                 </li>
               ))}
           </ul>
+
+          {/* PAGINATION */}
           {hasPreviousPage || hasNextPage ? (
             <Pagination
               previousPage={fetchPreviousPage}
@@ -266,6 +280,7 @@ function SearchPage({
 
 function SearchBar({ defaultTerm, setFilters }) {
   const [term, setTerm] = React.useState(defaultTerm)
+  console.log("🚀 ~ file: search.jsx ~ line 270 ~ SearchBar ~ term", term)
   const debouncedSetFilters = React.useCallback(
     debounce((value) => {
       setFilters((filters) => ({ ...filters, term: value }))

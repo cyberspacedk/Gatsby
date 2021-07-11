@@ -31,6 +31,7 @@ export function Filters({
 
   return (
     <>
+    {/* FILTER BY TYPE */}
       <CheckFilter
         name="Type"
         items={productTypes}
@@ -38,6 +39,8 @@ export function Filters({
         setSelectedItems={(value) => updateFilter("productTypes", value)}
       />
       <hr />
+    
+    {/* FILTER BY TYPE */}
       <details className={priceFilterStyle} open={true}>
         <summary>
           <div className={summary}>
@@ -79,6 +82,8 @@ export function Filters({
         </div>
       </details>
       <hr />
+
+    {/* FILTER BY BRANDS */}
       <CheckFilter
         name="Brands"
         items={vendors}
@@ -86,6 +91,8 @@ export function Filters({
         setSelectedItems={(value) => updateFilter("vendors", value)}
       />
       <hr />
+
+    {/* FILTER BY TAGS */} 
       <CheckFilter
         open={true}
         name="Tags"
